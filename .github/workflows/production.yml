@@ -1,15 +1,15 @@
-name: 'Deployment: Test'
+name: 'Deployment: Production'
 
 on:
-  release:
-    types: [prereleased]
+  push:
+    branches: [release]
 
 jobs:
   build:
     uses: ./.github/workflows/build.yml
 
-  test:
+  staging:
     needs: build
     uses: ./.github/workflows/deploy.yml
     with:
-      github-environment: Test
+      github-environment: Production
